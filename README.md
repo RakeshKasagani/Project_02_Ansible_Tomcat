@@ -294,6 +294,5 @@ pipeline {
 - **Scaling**: Separate Jenkins and Tomcat to different instances; add auto-scaling groups.
 - **Monitoring**: Integrate Prometheus/Grafana for metrics and alerts.
 - **Secrets Management**: Use AWS Secrets Manager for credentials instead of hardcoding.
-
 ---
 <img width="2378" height="1464" alt="image" src="https://github.com/user-attachments/assets/58215d71-bc82-47ac-8477-bb23b1e9f440" />
