@@ -35,7 +35,7 @@ The application is a basic Java web app (e.g., a simple servlet-based "Hello Wor
 1. Log in to the AWS Management Console.
 2. Navigate to EC2 Dashboard > Launch Instance.
 3. Choose an Amazon Linux 2 AMI (free tier eligible).
-4. Select t2.micro instance type.
+4. Select t2.medium instance type.
 5. Use default VPC and subnets (auto-assign public IP enabled).
 6. Add storage: Default 8 GiB gp2 volume.
 7. Add tags (e.g., Name: "CI-CD-Server").
