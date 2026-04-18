@@ -88,8 +88,8 @@ ansible --version  # Verify
 - Inbound Rules:
   - SSH: TCP 22, My IP
   - HTTP: TCP 80, 0.0.0.0/0
-  - Jenkins: TCP 8080, My IP
-  - Tomcat: TCP 8080 (default Tomcat port; adjust if needed), 0.0.0.0/0
+  - Jenkins: TCP 8080
+  - Tomcat: TCP 8081 (default Tomcat port; adjust if needed), 0.0.0.0/0
 - Outbound: All traffic allowed.
 
 ## Source Code Management
@@ -175,7 +175,7 @@ Example `deploy.yml`:
   become: true
   vars:
     java_pkg: java-1.8.0-openjdk-devel
-    tomcat_version: 9.0.109
+    tomcat_version: 9.0.85
     tomcat_install_dir: /opt/tomcat
     tomcat_service: tomcat
 
@@ -198,7 +198,7 @@ Example `deploy.yml`:
 
     - name: Download Tomcat
       get_url:
-        url: "https://downloads.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+        url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
         dest: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
 
     - name: Create Tomcat install directory
