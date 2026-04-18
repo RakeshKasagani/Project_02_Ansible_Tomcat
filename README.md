@@ -109,6 +109,44 @@ ansible --version  # Verify
 3. In Pipeline definition, select "Pipeline script from SCM".
 4. SCM: Git, Repository URL: `https://github.com/<username>/ci-cd-demo.git`.
 5. Script Path: `Jenkinsfile`.
+   ### I f the pipeline fails run these commands
+   ```
+   # ✅ Step 1: Run this inside EC2 (IMPORTANT)
+sudo visudo
+
+👉 This opens a file (don’t panic)
+
+# ✅ Step 2: Add this line at the bottom
+
+Use arrow keys and go to last line, then add:
+
+jenkins ALL=(ALL) NOPASSWD: ALL
+# ✅ Step 3: Save and exit
+
+# Press:
+
+ESC
+
+# Then type:
+
+:wq
+
+# Press Enter
+
+# 🔷 Step 4: Done ✅
+
+# Now Jenkins can run sudo without password
+
+# 🔷 Step 5: Run pipeline again
+
+# Go to Jenkins UI:
+
+http://54.221.10.2:8080
+
+# Click:
+# 👉 Build Now
+```
+   
 
 ### Maven Integration
 Maven is used to build the app. Ensure `pom.xml` is in the repo root.
