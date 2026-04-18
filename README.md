@@ -294,7 +294,7 @@ pipeline {
         stage('CLONE GITHUB CODE') {
             steps {
                 echo 'In this stage code will be cloned'
-                git branch: 'main', url: 'https://github.com/adarsh0331/Project_2.git'
+                git branch: 'main', url: 'https://github.com/RakeshKasagani/Project_02_Ansible_Tomcat.git'
             }
         }
 		
@@ -325,6 +325,76 @@ pipeline {
 - **EC2 Connectivity Issues**: SSH connection refused—Resolution: Verify security group allows port 22 from your IP; check instance public IP.
 - **Jenkins Build Errors**: Maven not found—Resolution: Ensure Maven is in PATH; add `export PATH=$PATH:/opt/maven/bin` in Jenkins config or use Maven tool in Jenkins.
 - **Ansible Deployment Issues**: Permission denied on Tomcat dir—Resolution: Run Ansible with `become: true` for sudo privileges; ensure ec2-user in tomcat group (`sudo usermod -aG tomcat ec2-user`).
+## After successful build verify your application is actually running.
+```
+🔷 Step 1: Check if Tomcat is running
+
+Login to EC2 and run:
+
+sudo systemctl status tomcat
+
+👉 You should see:
+
+active (running)
+🔷 Step 2: Open your application in browser
+
+Try this URL:
+
+http://54.221.10.2:8080/devops-3.2.0
+❗ If it doesn’t open, try:
+http://54.221.10.2:8080/
+
+👉 This should show Tomcat default page
+
+🔷 Step 3: Confirm WAR file deployed
+
+Run this:
+
+ls /opt/tomcat/webapps/
+
+👉 You should see:
+
+devops-3.2.0.war
+devops-3.2.0/
+
+🔷 Step 5: Verify port is open
+sudo netstat -tulnp | grep 8080
+
+🔥 If Jenkins is using 8080
+
+Then your app URL won’t work.
+
+🔷 Fix port conflict (if needed)
+Change Tomcat to port 8081
+
+Edit:
+
+sudo vi /opt/tomcat/conf/server.xml
+
+Find:
+
+port="8080"
+
+Change to:
+
+port="8081"
+
+🔶 Step 2: Find this line
+<Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol"
+🔶 Step 3: Change to
+<Connector port="8081" protocol="org.apache.coyote.http11.Http11NioProtocol"
+🔶 Step 4: Save
+
+Press:
+
+ESC → :wq
+
+Restart Tomcat:
+
+sudo systemctl restart tomcat
+Then open:
+http://100.31.95.133:8081/devops-3.2.0/
+```
 
 ## Future Improvements
 
