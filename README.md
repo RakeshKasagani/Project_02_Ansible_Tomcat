@@ -73,6 +73,7 @@ sudo sudo dnf install java-21-amazon-corretto -y
 sudo yum install jenkins -y
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
+sudo systemctl status jenkins
 ```
 
 Access Jenkins UI at `http://<ec2-public-ip>:8080` and complete initial setup (unlock with admin password from `/var/lib/jenkins/secrets/initialAdminPassword`).
